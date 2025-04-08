@@ -39,14 +39,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "djongo",
-    "corsheaders",
     "octofit_tracker",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -129,5 +130,12 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Allow all origins for CORS
-CORS_ALLOW_ALL_ORIGINS = True
+# Add CORS settings
+# Explicitly allow the frontend's origin
+CORS_ALLOWED_ORIGINS = [
+    "https://friendly-space-spork-r4r5xqqjpq652v9j-3000.app.github.dev",
+    "https://github.dev"
+]
+
+# Allow credentials
+CORS_ALLOW_CREDENTIALS = True
