@@ -6,7 +6,7 @@ from .models import User, Team, Activity, Leaderboard, Workout
 
 @api_view(['GET'])
 def api_root(request, format=None):
-    base_url = request.build_absolute_uri('/')
+    base_url = "https://friendly-space-spork-r4r5xqqjpq652v9j-8000.app.github.dev/"
     return Response({
         'users': base_url + 'api/users/',
         'teams': base_url + 'api/teams/',
