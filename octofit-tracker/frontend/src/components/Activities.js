@@ -1,36 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Activities() {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    fetch('https://friendly-space-spork-r4r5xqqjpq652v9j-8000.app.github.dev/api/activities')
+    fetch('https://friendly-space-spork-r4r5xqqjpq652v9j-8000.app.github.dev/api/activities/')
       .then(response => response.json())
-      .then(data => setActivities(data));
+      .then(data => setActivities(data))
+      .catch(error => console.error('Error fetching activities:', error));
   }, []);
 
   return (
-    <div className="card">
-      <div className="card-body">
-        <h1 className="card-title">Activities</h1>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {activities.map(activity => (
-              <tr key={activity.id}>
-                <td>{activity.id}</td>
-                <td>{activity.name}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div>
+      <h1>Activities</h1>
+      <ul>
+        {activities.map(activity => (
+          <li key={activity._id}>{activity.activity_type} - {activity.duration}</li>
+        ))}
+      </ul>
     </div>
   );
 }
